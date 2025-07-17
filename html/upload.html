@@ -1,7 +1,17 @@
-<h2>Загрузить файл</h2>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-  <label for="folder">Дата (напр. 2025-07-17):</label>
-  <input type="text" name="folder" required><br><br>
-  <input type="file" name="fileToUpload" required><br><br>
-  <input type="submit" value="Загрузить">
-</form>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Загрузка материалов</title>
+</head>
+<body>
+  <h2>Загрузить файл</h2>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <label for="folder">Дата (например: 2025-07-16):</label>
+    <input type="text" name="folder" required><br><br>
+
+    <input type="file" name="fileToUpload" required><br><br>
+    <input type="submit" value="Загрузить">
+  </form>
+</body>
+</html>
