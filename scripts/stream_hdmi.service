@@ -1,0 +1,10 @@
+[Unit]
+Description=Conference HDMI Streaming Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/stream_hdmi.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
