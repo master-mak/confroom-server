@@ -1,5 +1,5 @@
 #!/bin/bash
-ffmpeg -f v4l2 -i /dev/video0 \
+ffmpeg -f v4l2 -input_format mjpeg -video_size 1920x1080 -i /dev/video0 \
   -f alsa -i hw:1 \
   -vcodec libx264 -preset ultrafast -tune zerolatency \
   -acodec aac -ar 44100 -ac 2 \
