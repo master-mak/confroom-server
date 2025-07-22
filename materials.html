@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Материалы</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button onclick="history.back()">Назад</button>
+  <div class="files" id="fileList"></div>
+  <script>
+    fetch('/meetings/')
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const links = [...doc.querySelectorAll('a')];
+        const container = document.getElementById('fileList');
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          if (!href || href.endsWith('/')) return;
+          const name = decodeURIComponent(href.replace(/.*\//, ''));
+          const ext = name.split('.').pop().toLowerCase();
+          let viewer = '';
+          if (ext === 'pdf') {
+            viewer = `/pdfjs/web/viewer.html?file=/meetings/${name}`;
+          }
+          container.innerHTML += `
+            <div class="file-tile">
+              <a href="${viewer || `/meetings/${name}`}" target="_blank">
+                <img src="file-icon.png" alt="file" />
+                <p>${name}</p>
+              </a>
+            </div>`;
+        });
+      });
+  </script>
+</body>
+</html>

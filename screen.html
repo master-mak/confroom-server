@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Экран</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button onclick="history.back()">Назад</button>
+  <video id="video" controls autoplay muted playsinline style="width: 100%; height: auto;" ></video>
+  <script>
+    if (Hls.isSupported()) {
+      var video = document.getElementById('video');
+      var hls = new Hls();
+      hls.loadSource('/live/stream.m3u8');
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = '/live/stream.m3u8';
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</body>
+</html>
